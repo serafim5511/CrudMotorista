@@ -9,11 +9,11 @@ namespace ApiTesteCandidato.Controllers
 {
     public class MotoristaController : Controller
     {
-        private readonly IMotorista _ICep;
+        private readonly IMotorista _IMotorista;
 
         public MotoristaController(IMotorista ICep)
         {
-            _ICep = ICep;
+            _IMotorista = ICep;
         }
 
         [HttpPost("/api/Cadastrar")]
@@ -25,7 +25,7 @@ namespace ApiTesteCandidato.Controllers
             }
             try
             {                
-                await _ICep.Add(cep);
+                await _IMotorista.Add(cep);
 
                 return Ok(new ApiResposta<DateTime>(DateTime.Now, true, 200, "Ok"));
             }
@@ -39,7 +39,7 @@ namespace ApiTesteCandidato.Controllers
         {     
             try
             {
-                return Ok(await _ICep.List());
+                return Ok(await _IMotorista.List());
             }
             catch (Exception ex)
             {
@@ -51,7 +51,7 @@ namespace ApiTesteCandidato.Controllers
         {
             try
             {
-                return Ok(await _ICep.GetEntityById(id));
+                return Ok(await _IMotorista.GetEntityById(id));
             }
             catch (Exception ex)
             {
@@ -67,7 +67,7 @@ namespace ApiTesteCandidato.Controllers
             }
             try
             {
-                await _ICep.Update(motorista);
+                await _IMotorista.Update(motorista);
 
                 return Ok(new ApiResposta<DateTime>(DateTime.Now, true, 200, "Ok"));
             }
@@ -85,7 +85,7 @@ namespace ApiTesteCandidato.Controllers
             }
             try
             {
-                await _ICep.Delete(motorista);
+                await _IMotorista.Delete(motorista);
 
                 return Ok(new ApiResposta<DateTime>(DateTime.Now, true, 200, "Ok"));
             }
